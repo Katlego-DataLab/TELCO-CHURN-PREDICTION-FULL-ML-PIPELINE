@@ -9,7 +9,7 @@ The goal is to identify customers likely to leave the service so businesses can 
 
 The model uses Random Forest with 10-fold cross-validation and optimizes performance using ROC-AUC.
 
- Dataset
+ ## Dataset
 
 Telco customer dataset (telco.csv)
 
