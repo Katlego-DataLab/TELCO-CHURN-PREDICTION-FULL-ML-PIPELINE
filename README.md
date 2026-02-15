@@ -18,7 +18,7 @@ Target variable: Churn.Label (Yes / No)
 Includes demographic, service usage, and billing features
 
  Project Pipeline
-1️. Data Preparation
+## 1️. Data Preparation
 
 Loaded required libraries
 
@@ -30,51 +30,51 @@ Converted the target variable to a factor
 
 Ensured “Yes” is treated as the positive class
 
-2️. Data Cleaning
+## 2️. Data Cleaning
 
 Removed data leakage variables:
 
-Customer Status
+* Customer Status
 
-Churn Score
+* Churn Score
 
-Churn Category
+* Churn Category
 
-Churn Reason
+* Churn Reason
 
-Customer ID
+* Customer ID
 
 Removed low-value geographic features:
 
-Country, State, City, Zip Code
+* Country, State, City, Zip Code
 
-Latitude & Longitude
+* Latitude & Longitude
 
-3️.  Missing Value Handling
+## 3️.  Missing Value Handling
 
 Replaced missing values in Total.Charges with median
 
-4️. Feature Engineering
+## 4️. Feature Engineering
 
 Converted all character variables to factors
 
-5️. Class Imbalance Handling
+## 5️. Class Imbalance Handling
 
 Checked churn distribution
 
 Applied ROSE sampling within cross-validation folds
 
-6. Model Training
+## 6. Model Training
 
-Algorithm: Random Forest
+* Algorithm: Random Forest
 
-10-fold Cross-Validation
+* 10-fold Cross-Validation
 
-500 trees
+* 500 trees
 
-Performance metric: ROC-AUC
+* Performance metric: ROC-AUC
 
-7. Model Evaluation
+## 7. Model Evaluation
 
 Extracted best tuning parameters
 
@@ -82,15 +82,15 @@ Calculated cross-validated AUC
 
 Analyzed feature importance
 
-Results
+## 8. Results
 
-Model optimized using ROC-AUC
+* Model optimized using ROC-AUC
 
-Cross-validated AUC reported from training results
+* Cross-validated AUC reported from training results
 
-Variable importance identifies key churn drivers
+* Variable importance identifies key churn drivers
 
- How to Run
+ ## 9.  How to Run
 
 Install required R packages:
 
