@@ -1,8 +1,5 @@
 
 ## TELCO CHURN PREDICTION – FULL ML PIPELINE
-
-
-
 ## 1. Loading required  Libraries
 
 library(tidyverse)
