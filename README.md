@@ -59,7 +59,7 @@ The objective is binary classification:
 This project follows a structured ML workflow rather than ad-hoc modeling.
 
 
-## 1️. Data Preparation
+## 1. Data Preparation
 
 - Loaded required modeling libraries
 - Converted tibble to data.frame (compatibility with caret)
@@ -70,7 +70,7 @@ This project follows a structured ML workflow rather than ad-hoc modeling.
 Setting the positive class is critical for correct ROC-AUC interpretation.
 
 
-## 2️. Data Leakage Prevention
+## 2. Data Leakage Prevention
 
 One of the most important modeling steps.
 
@@ -89,7 +89,7 @@ Including leakage features would artificially inflate model performance and make
 This demonstrates understanding of real-world ML pitfalls.
 
 
-## 3️. Feature Reduction
+## 3. Feature Reduction
 
 Removed low-value geographic variables:
 
@@ -104,7 +104,7 @@ Reason:
 
 These features provide little predictive power and may introduce noise or unnecessary dimensionality.
 
-## 4️. Missing Value Handling
+## 4. Missing Value Handling
 
 Handled missing values in `Total.Charges` using median imputation:
 
@@ -119,7 +119,7 @@ Median was chosen because:
 -  It avoids bias introduced by mean imputation
 
 
-## 5️. Feature Engineering
+## 5. Feature Engineering
 
 Converted all character variables to factors.
 
@@ -131,7 +131,7 @@ This ensures:
 
 
 
-## 6️. Class Imbalance Handling
+## 6. Class Imbalance Handling
 
 Churn datasets are typically imbalanced.
 
@@ -156,7 +156,7 @@ Why this is important:
 Balancing was applied within folds — not before splitting — to prevent data leakage.
 
 
-## 7️. Model Training Strategy
+## 7. Model Training Strategy
 
 ### Algorithm: Random Forest
 
@@ -177,7 +177,7 @@ Random Forest was selected because:
 Cross-validation ensures robust performance estimation and reduces variance.
 
 
-## 8️. Model Optimization Metric
+## 8. Model Optimization Metric
 
 The model was optimized using:
 
@@ -192,7 +192,7 @@ Why ROC-AUC?
 This is more reliable than raw accuracy.
 
 
-## 9️. Model Evaluation
+## 9. Model Evaluation
 
 Extracted:
 
@@ -231,7 +231,7 @@ This model allows organizations to:
 -  Reduce churn rate
 -  Increase customer lifetime value
 
-The output can integrate into CRM systems for proactive intervention.
+The output can be integrated into CRM systems for proactive intervention.
 
 
 ## Why This Project Demonstrates  ML Skills
