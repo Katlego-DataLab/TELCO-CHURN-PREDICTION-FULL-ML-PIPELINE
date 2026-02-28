@@ -294,5 +294,5 @@ It demonstrates:
 - Risk modeling discipline
 - Business-oriented problem solving
 
-The focus was not just predictive performance  but building a reliable, leakage-free, cross-validated pipeline suitable for real deployment.
+The focus was not just predictive performance but building a reliable, leakage-free, cross-validated pipeline suitable for real deployment.
 
