@@ -117,7 +117,7 @@ Raw Data (telco.csv)
 ### Step-by-Step Decisions
 
 #### 1. Data Leakage Prevention
-The following variables were removed before modelling — they are only observable **after** a customer has already churned and would cause artificially inflated performance:
+The following variables were removed before modelling they are only observable **after** a customer has already churned and would cause artificially inflated performance:
 
 | Variable Removed | Reason |
 |---|---|
