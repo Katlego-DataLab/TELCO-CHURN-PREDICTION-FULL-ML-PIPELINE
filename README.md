@@ -3,7 +3,9 @@
 End-to-end machine learning pipeline for predicting customer attrition using Random Forest in R
 
 **Author:** Katlego Mathebula
+
 **Tech Stack:** R, caret, randomForest, pROC, ROSE, tidyverse
+
 **Project Type:** Supervised Learning (Binary Classification)
 
 ---
