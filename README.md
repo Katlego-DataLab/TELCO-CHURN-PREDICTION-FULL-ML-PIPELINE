@@ -188,7 +188,7 @@ The most influential predictors include:
 * Monthly Charges
 
 These variables are key drivers of customer behaviour and churn risk.
-
+![Feature Importance](https://github.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/blob/main/03_feature_importance.png)
 ---
 
 ### Customer Risk Segmentation
