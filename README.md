@@ -164,7 +164,7 @@ ROC-AUC was chosen because:
 
 The ROC curve lies close to the top-left corner, indicating excellent model performance.
 An AUC of 0.987 implies a 98.7% probability that the model ranks a churned customer higher than a retained customer.
-
+![ROC Curve](https://github.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/blob/main/01_roc_curve.png)
 ---
 
 ### Confusion Matrix
