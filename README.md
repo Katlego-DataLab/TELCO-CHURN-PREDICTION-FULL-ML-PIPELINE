@@ -1,103 +1,263 @@
-Telco Customer Churn Prediction
+Bestie, got you — this is now a **clean, professional, no-emojis, GitHub-ready README**.
+You can copy and paste this directly into your `README.md` and it will render perfectly.
+
+---
+
+# Telco Customer Churn Prediction
+
 End-to-end machine learning pipeline for predicting customer attrition using Random Forest in R
 
-R
-Random Forest
-caret
-ROSE
-pROC
-tidyverse
-Production-style
-Overview
-Customer churn is among the most costly operational challenges in telecommunications. This project implements a zero-leakage, cross-validated churn classification system using Random Forest. The pipeline covers preprocessing, imbalance correction, model training, evaluation, and feature attribution.
+**Author:** Katlego Mathebula
+**Tech Stack:** R, caret, randomForest, pROC, ROSE, tidyverse
+**Project Type:** Supervised Learning (Binary Classification)
 
-AUC (ROC)
-0.987
-10-fold CV × 3 repeats
-Ensemble size
-500
-decision trees (ntree)
-Records
-~7 000
-telco customer rows
-Business context
-The model answers three operational questions:
+---
 
-Which customers are most likely to churn within the next billing cycle?
-What behavioural and contractual signals drive attrition?
-Where should retention spend be concentrated to maximise ROI?
-Dataset
-Attribute	Detail
-Source	Telco customer dataset (IBM sample)
-Target variable	Churn.Label — binary (Yes / No)
-Feature categories	Demographics, billing, service subscriptions, contract type, tenure
-Raw feature count	20+ columns before cleaning
-Class distribution	Imbalanced — ~26% churn, ~74% retained
-ML pipeline
-1
-Standardisation & type coercion
-Column names normalised; dataset cast to data.frame; target variable factored. Ensures downstream caret compatibility.
-2
-Data leakage removal
-Dropped Customer.Status, Churn.Score, Churn.Category, Churn.Reason, Customer.ID — all carry post-hoc information unavailable at inference time.
-3
-Feature reduction
-Removed geographic identifiers (City, Country, Zip, coordinates). Low signal-to-noise ratio; increases dimensionality without predictive benefit.
-4
-Missing value imputation
-Total.Charges NAs filled with column median — robust to outlier skew, preserves distributional shape.
-5
-Categorical encoding
-All character columns converted to factors. Random Forest requires factor inputs for correct split behaviour on nominal variables.
-6
-Class imbalance correction
-ROSE sampling applied inside each CV fold — never on the full dataset. Prevents synthetic samples from leaking into validation folds.
-7
-Model training — Random Forest
-Handles nonlinear relationships, reduces overfitting via bagging, works with mixed data types, provides built-in variable importance ranking.
-8
-Cross-validation strategy
-10-fold CV repeated 3 times (30 total fits). Reduces variance in performance estimate; reliable proxy for generalisation on unseen data.
-9
-Evaluation — ROC-AUC
-Chosen over accuracy because the target is imbalanced. AUC measures rank-ordering ability across all thresholds — threshold-agnostic and appropriate for imbalanced binary problems.
-All ROSE sampling is performed within cross-validation folds to eliminate synthetic data leakage. This is a deliberate design choice that distinguishes a production-safe pipeline from a naive one.
-Visual outputs & interpretation
-1. ROC curve — AUC = 0.987
-The curve hugs the top-left corner almost immediately, confirming the model separates churners from non-churners with near-perfect ranking ability across all decision thresholds. AUC of 0.987 means there is a 98.7% chance the model scores a random churner higher than a random non-churner.
-01_roc_curve.png
-2. Confusion matrix heatmap
-TN = 945, TP = 361, FP = 89, FN = 12. Only 12 churners were missed (false negatives) — the costliest error type. The model correctly caught 361 of 373 actual churners, a recall of 96.8% on the positive class.
-02_confusion_matrix.png
-3. Top 10 feature importance
-Satisfaction Score dominates all other predictors by a wide margin — unhappy customers are the primary churn signal. Number of Referrals is the second strongest driver (engaged customers refer others; disengaged customers don't). Contract type and Online Security follow, confirming that product stickiness and commitment level are strong retention levers. Tenure, charges, and revenue variables are present but carry substantially lower relative importance.
-03_feature_importance.png
-4. Customer risk level distribution
-~4,600 customers are Low Risk, ~2,050 are High Risk, and ~280 are Medium Risk. The large High Risk segment (~28% of base) represents the immediate intervention target — a meaningful and actionable population for retention campaigns.
-04_risk_level_distribution.png
-5. Predicted churn probability distribution
-The bimodal distribution — concentrated at 0–10% and 90–100% — confirms the model produces confident, well-separated predictions rather than uncertain mid-range probabilities. Very few customers fall in the ambiguous 30–70% range, making the output actionable at almost any threshold.
-05_probability_band_distribution.png
-6. Prediction accuracy breakdown
-~6,700 correct predictions vs ~500 incorrect. Overall accuracy is approximately 93%, but this metric is secondary — AUC and recall on the churn class are the operationally critical measures for an imbalanced classification problem.
-06_prediction_accuracy.png
-7. High-value customers by risk level
-Approximately 2,050 standard-segment customers are flagged as High Risk — the priority group for proactive outreach. The Low Risk majority (~4,600) can be maintained with lighter-touch engagement programmes to reduce retention cost.
-07_high_value_vs_risk.png
-8. Actual churn by contract type
-Month-to-Month customers churn at a dramatically higher rate than One Year or Two Year customers — nearly 1 in 2 month-to-month customers churned, compared to roughly 1 in 9 on annual contracts and far fewer on two-year agreements. This directly validates contract type as a key retention lever: migrating customers from monthly to longer-term contracts is one of the highest-ROI actions the business can take.
-08_churn_by_contract.png
-The bimodal churn probability distribution (chart 5) and the AUC of 0.987 (chart 1) together confirm that this is a confident, deployment-ready model — not a borderline classifier.
-Key findings
-Customers most likely to churn share the following profile:
+## Overview
 
-Low satisfaction score (the single strongest predictor)
-Zero or very few referrals made
-Month-to-month contract
-No online security subscription
-Short customer tenure (< 12 months)
-How to run
-Dependencies
+Customer churn is one of the most costly operational challenges in the telecommunications industry. This project implements a production-style machine learning pipeline to predict customer attrition using a Random Forest model.
+
+The solution is designed with a strong focus on:
+
+* Data leakage prevention
+* Cross-validation for reliable performance
+* Class imbalance handling
+* Model interpretability and business insight generation
+
+---
+
+## Key Results
+
+* **AUC (ROC):** 0.987
+* **Validation Strategy:** 10-fold cross-validation repeated 3 times
+* **Model:** Random Forest (500 trees)
+* **Dataset Size:** Approximately 7,000 customer records
+
+The model demonstrates excellent predictive performance and strong separation between churn and non-churn customers.
+
+---
+
+## Business Context
+
+This model addresses the following key business questions:
+
+* Which customers are most likely to churn in the near future?
+* What behavioural and contractual factors drive churn?
+* How can retention efforts be prioritised to maximise return on investment?
+
+---
+
+## Dataset
+
+* **Source:** Telco customer dataset 
+* **Target Variable:** `Churn.Label` (Yes / No)
+
+### Feature Categories:
+
+* Demographics
+* Billing information
+* Service subscriptions
+* Contract type
+* Customer tenure
+
+### Data Characteristics:
+
+* More than 20 features before preprocessing
+* Imbalanced target variable:
+
+  * Approximately 26% churn
+  * Approximately 74% retained
+
+---
+
+## Machine Learning Pipeline
+
+### 1. Data Preparation
+
+* Standardised column names
+* Converted dataset to `data.frame`
+* Defined and encoded target variable
+
+---
+
+### 2. Data Leakage Prevention
+
+Removed the following variables:
+
+* Customer.Status
+* Churn.Score
+* Churn.Category
+* Churn.Reason
+* Customer.ID
+
+These variables contain post-event information and would result in unrealistic model performance if included.
+
+---
+
+### 3. Feature Reduction
+
+Removed geographic features:
+
+* City, Country, Zip Code, Latitude, Longitude
+
+These variables contribute little predictive value and increase model complexity.
+
+---
+
+### 4. Missing Value Handling
+
+* Applied median imputation to `Total.Charges`
+
+Median was chosen due to its robustness to outliers and ability to preserve distribution.
+
+---
+
+### 5. Feature Engineering
+
+* Converted all categorical variables to factors
+
+This ensures correct handling of categorical splits within the Random Forest model.
+
+---
+
+### 6. Class Imbalance Handling
+
+* Applied ROSE sampling within cross-validation folds
+
+This prevents bias toward the majority class and avoids data leakage.
+
+---
+
+### 7. Model Selection
+
+Random Forest was selected because it:
+
+* Captures nonlinear relationships
+* Reduces overfitting through bagging
+* Handles mixed data types effectively
+* Provides feature importance measures
+
+---
+
+### 8. Training Strategy
+
+* 10-fold cross-validation
+* Repeated 3 times
+* 500 trees
+
+This ensures stable and generalisable performance.
+
+---
+
+### 9. Evaluation Metric
+
+**Primary Metric:** ROC-AUC
+
+ROC-AUC was chosen because:
+
+* It is appropriate for imbalanced datasets
+* It evaluates ranking performance across thresholds
+* It is more reliable than accuracy in this context
+
+---
+
+## Model Interpretation and Insights
+
+### ROC Curve
+
+The ROC curve lies close to the top-left corner, indicating excellent model performance.
+An AUC of 0.987 implies a 98.7% probability that the model ranks a churned customer higher than a retained customer.
+
+---
+
+### Confusion Matrix
+
+* True Positives: 361
+* False Negatives: 12
+
+The model correctly identifies 96.8% of churned customers, minimising missed churn cases, which are the most costly errors.
+
+---
+
+### Feature Importance
+
+The most influential predictors include:
+
+* Satisfaction Score
+* Number of Referrals
+* Contract Type
+* Online Security
+* Tenure
+* Monthly Charges
+
+These variables are key drivers of customer behaviour and churn risk.
+
+---
+
+### Customer Risk Segmentation
+
+* Approximately 4,600 customers classified as Low Risk
+* Approximately 2,050 customers classified as High Risk
+* Approximately 280 customers classified as Medium Risk
+
+The high-risk segment represents a clear target group for retention strategies.
+
+---
+
+### Predicted Probability Distribution
+
+The model produces a bimodal distribution of churn probabilities, with most predictions concentrated near 0% or 100%.
+
+This indicates strong confidence in predictions and minimal ambiguity.
+
+---
+
+### Accuracy Overview
+
+* Approximately 6,700 correct predictions
+* Approximately 500 incorrect predictions
+* Overall accuracy around 93%
+
+However, ROC-AUC and recall are more important due to class imbalance.
+
+---
+
+### Churn by Contract Type
+
+Customers on month-to-month contracts exhibit significantly higher churn rates compared to those on annual or multi-year contracts.
+
+This confirms contract structure as a key lever for improving retention.
+
+---
+
+## Key Findings
+
+Customers most likely to churn typically:
+
+* Have low satisfaction scores
+* Have made few or no referrals
+* Are on month-to-month contracts
+* Do not use online security services
+* Have short tenure (less than 12 months)
+
+---
+
+## Business Impact
+
+This model enables organisations to:
+
+* Identify high-risk customers before churn occurs
+* Target retention strategies effectively
+* Optimise marketing spend
+* Improve customer lifetime value
+
+---
+
+## How to Run
+
+### Install Dependencies
+
+```r
 install.packages(c(
   "tidyverse",
   "caret",
@@ -106,15 +266,43 @@ install.packages(c(
   "ROSE",
   "e1071"
 ))
-Steps
-Place telco.csv in your R working directory.
-Source the main script: source("churn_model.R")
-All 8 plots render automatically to the Plots pane.
-Inspect varImp(rf_model) for ranked feature importance.
-Potential extensions
-Gradient boosting comparison (XGBoost / LightGBM)
-SHAP values for local prediction explainability
-Precision–recall threshold optimisation for business-specific cost functions
-REST API deployment via Plumber (R) or FastAPI (Python port)
-Power BI / Tableau dashboard for non-technical stakeholder consumption
-Author: Katlego Mathebula  ·  Stack: R · caret · randomForest · pROC · ROSE · tidyverse
+```
+
+### Steps
+
+1. Place `telco.csv` in the working directory
+2. Run the main script
+3. Review outputs and model results
+
+---
+
+## Potential Extensions
+
+* Gradient boosting models (XGBoost, LightGBM)
+* SHAP-based model explainability
+* Threshold optimisation using precision-recall trade-offs
+* API deployment (Plumber or FastAPI)
+* Dashboard integration (Power BI or Tableau)
+
+---
+
+## Conclusion
+
+This project demonstrates a complete, production-oriented machine learning workflow:
+
+* Clean and structured data pipeline
+* Leakage-aware modeling
+* Robust validation strategy
+* Business-focused interpretation
+
+The solution goes beyond prediction by providing actionable insights that can directly support customer retention strategies.
+
+---
+
+If you want, next step we can:
+
+* Standardise all your READMEs like this
+* Align them with your CV and portfolio
+* Turn your GitHub into a full professional brand
+
+Just say the word.
