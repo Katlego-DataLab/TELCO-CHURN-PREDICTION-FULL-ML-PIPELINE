@@ -1,8 +1,3 @@
-Bestie, got you — this is now a **clean, professional, no-emojis, GitHub-ready README**.
-You can copy and paste this directly into your `README.md` and it will render perfectly.
-
----
-
 # Telco Customer Churn Prediction
 
 End-to-end machine learning pipeline for predicting customer attrition using Random Forest in R
@@ -276,15 +271,7 @@ install.packages(c(
 
 ---
 
-## Potential Extensions
 
-* Gradient boosting models (XGBoost, LightGBM)
-* SHAP-based model explainability
-* Threshold optimisation using precision-recall trade-offs
-* API deployment (Plumber or FastAPI)
-* Dashboard integration (Power BI or Tableau)
-
----
 
 ## Conclusion
 
@@ -297,12 +284,3 @@ This project demonstrates a complete, production-oriented machine learning workf
 
 The solution goes beyond prediction by providing actionable insights that can directly support customer retention strategies.
 
----
-
-If you want, next step we can:
-
-* Standardise all your READMEs like this
-* Align them with your CV and portfolio
-* Turn your GitHub into a full professional brand
-
-Just say the word.
