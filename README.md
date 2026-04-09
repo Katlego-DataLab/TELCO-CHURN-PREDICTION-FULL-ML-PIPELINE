@@ -173,6 +173,7 @@ An AUC of 0.987 implies a 98.7% probability that the model ranks a churned custo
 * False Negatives: 12
 
 The model correctly identifies 96.8% of churned customers, minimising missed churn cases, which are the most costly errors.
+
 ![Confusion Matrix](https://github.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/blob/main/02_confusion_matrix.png)
 ---
 
@@ -198,6 +199,7 @@ These variables are key drivers of customer behaviour and churn risk.
 * Approximately 280 customers classified as Medium Risk
 
 The high-risk segment represents a clear target group for retention strategies.
+![Customer Risk Segmentation](https://github.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/blob/main/04_risk_level_distribution.png)
 
 ---
 
