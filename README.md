@@ -165,6 +165,7 @@ ROC-AUC was chosen because:
 The ROC curve lies close to the top-left corner, indicating excellent model performance.
 An AUC of 0.987 implies a 98.7% probability that the model ranks a churned customer higher than a retained customer.
 ![ROC Curve](https://github.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/blob/main/01_roc_curve.png)
+
 ---
 
 ### Confusion Matrix
@@ -175,6 +176,7 @@ An AUC of 0.987 implies a 98.7% probability that the model ranks a churned custo
 The model correctly identifies 96.8% of churned customers, minimising missed churn cases, which are the most costly errors.
 
 ![Confusion Matrix](https://github.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/blob/main/02_confusion_matrix.png)
+
 ---
 
 ### Feature Importance
@@ -190,6 +192,7 @@ The most influential predictors include:
 
 These variables are key drivers of customer behaviour and churn risk.
 ![Feature Importance](https://github.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/blob/main/03_feature_importance.png)
+
 ---
 
 ### Customer Risk Segmentation
@@ -208,6 +211,8 @@ The high-risk segment represents a clear target group for retention strategies.
 The model produces a bimodal distribution of churn probabilities, with most predictions concentrated near 0% or 100%.
 
 This indicates strong confidence in predictions and minimal ambiguity.
+
+![Predicted Probability Distribution](https://github.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/blob/main/05_probability_band_distribution.png) 
 
 ---
 
