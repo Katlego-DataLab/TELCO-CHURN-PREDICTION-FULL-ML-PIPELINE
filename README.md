@@ -33,7 +33,7 @@ Customer churn is one of the most expensive operational challenges in telecommun
 ### Business Questions Addressed
 
 - **Who** is most likely to churn in the near future?
-- **Why** are customers leaving — which behavioural and contractual factors drive attrition?
+- **Why** are customers leaving  which behavioural and contractual factors drive attrition?
 - **How** can retention efforts be prioritised to maximise return on investment?
 
 ---
