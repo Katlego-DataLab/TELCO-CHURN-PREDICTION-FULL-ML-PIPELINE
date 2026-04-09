@@ -173,7 +173,7 @@ An AUC of 0.987 implies a 98.7% probability that the model ranks a churned custo
 * False Negatives: 12
 
 The model correctly identifies 96.8% of churned customers, minimising missed churn cases, which are the most costly errors.
-
+![Confusion Matrix](https://github.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/blob/main/02_confusion_matrix.png)
 ---
 
 ### Feature Importance
