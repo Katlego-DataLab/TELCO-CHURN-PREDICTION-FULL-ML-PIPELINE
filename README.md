@@ -231,7 +231,7 @@ This bimodal pattern indicates:
 
 ### Churn by Contract Type
 
-Month-to-month customers churn at significantly higher rates than those on annual or two-year contracts. This confirms that **contract structure is a primary lever** for reducing churn — converting high-risk month-to-month customers to longer-term agreements should be a key retention strategy.
+Month-to-month customers churn at significantly higher rates than those on annual or two-year contracts. This confirms that contract structure is a primary lever for reducing churn converting high-risk month-to-month customers to longer-term agreements should be a key retention strategy.
 
 ---
 
@@ -293,7 +293,7 @@ The script produces the following artefacts:
 |---|---|
 | `01_roc_curve.png` | ROC curve with AUC annotation |
 | `02_confusion_matrix.png` | Heatmap of confusion matrix |
-| `03_feature_importance.png` | Top 10 predictors by importance |
+| `03_feature_importance.png` | Top 15 predictors by importance |
 | `04_risk_level_distribution.png` | Customer count by risk tier |
 | `05_probability_band_distribution.png` | Bimodal churn probability distribution |
 | Console output | CV AUC, best `mtry`, confusion matrix statistics |
