@@ -89,7 +89,7 @@ This project gives a telecom company a **proactive early-warning system**:
 | 🟡 **Medium Risk** | ~280 | Proactive check-in & value reinforcement |
 | 🟢 **Low Risk** | ~4,600 | Loyalty rewards & upsell opportunities |
 
-> Focusing solely on the 🔴 high-risk group means retention teams work a list of **2,050** — not 7,000. That's **70% less wasted effort** and dramatically higher ROI on every retention dollar spent.
+> Focusing solely on the 🔴 high-risk group means retention teams work a list of **2,050**  not 7,000. That's **70% less wasted effort** and dramatically higher ROI on every retention dollar spent.
 
 ---
 
