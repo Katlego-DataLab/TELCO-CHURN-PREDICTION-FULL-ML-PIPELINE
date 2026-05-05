@@ -17,9 +17,9 @@
 
 ## 🚀 TL;DR
 
-> A production-ready Random Forest pipeline that predicts which telecom customers are about to churn — **before they do** — with **96.8% recall** and **AUC = 0.987**.
+> A production-ready Random Forest pipeline that predicts which telecom customers are about to churn **before they do**  with **96.8% recall** and **AUC = 0.987**.
 >
-> Out of 7,000 customers, the model correctly flags **361 of 373 churners** and segments the entire base into actionable risk tiers — so retention teams know exactly who to call, and when.
+> Out of 7,000 customers, the model correctly flags **361 of 373 churners** and segments the entire base into actionable risk tiers, so retention teams know exactly who to call, and when.
 
 ---
 
@@ -27,7 +27,7 @@
 
 Telecom companies lose billions every year to churn. The painful part? **Most of it is preventable.**
 
-The problem isn't that companies don't care — it's that by the time a customer cancels, it's already too late. Winning them back costs **5–7× more** than simply keeping them.
+The problem isn't that companies don't care, it's that by the time a customer cancels, it's already too late. Winning them back costs **5–7× more** than simply keeping them.
 
 This project gives a telecom company a **proactive early-warning system**:
 
@@ -44,15 +44,15 @@ This project gives a telecom company a **proactive early-warning system**:
 | Metric | Result | What It Means |
 |:---|:---:|:---|
 | 🎯 **AUC (ROC)** | **0.987** | Ranks a churner above a retained customer 98.7% of the time |
-| 🔔 **Recall** | **96.8%** | Catches 361 of 373 actual churners — only 12 slipped through |
+| 🔔 **Recall** | **96.8%** | Catches 361 of 373 actual churners only 12 slipped through |
 | ✅ **Accuracy** | **~93%** | ~6,700 correct predictions out of 7,000 |
 | 🌲 **Model** | Random Forest | 500 trees · 10-fold CV × 3 repeats |
 | 📦 **Dataset** | ~7,000 records | 20+ features · 26% churn rate |
 
 </div>
 
-> **⚠️ On AUC = 0.987:** High numbers raise eyebrows — here's why this one is real.
-> Post-churn variables (`Churn.Score`, `Churn.Reason`, `Customer.Status`) were **explicitly removed** before modelling — a common mistake that inflates AUC artificially. ROSE oversampling was applied **inside** each CV fold, not before, so no synthetic data contaminated validation. The 0.987 reflects genuine out-of-sample performance.
+> **⚠️ On AUC = 0.987:** High numbers raise eyebrows, here's why this one is real.
+> Post-churn variables (`Churn.Score`, `Churn.Reason`, `Customer.Status`) were **explicitly removed** before modelling  a common mistake that inflates AUC artificially. ROSE oversampling was applied **inside** each CV fold, not before, so no synthetic data contaminated validation. The 0.987 reflects genuine out-of-sample performance.
 
 ---
 
@@ -125,11 +125,11 @@ Raw Customer Data (telco.csv)
 
 **1. 🚫 Leakage Prevention — the most important step**
 
-Variables like `Churn.Score` and `Churn.Reason` are only known *after* a customer leaves. Including them would make the model look perfect — but fail completely in production. Removing them is what makes the 0.987 AUC *meaningful*.
+Variables like `Churn.Score` and `Churn.Reason` are only known *after* a customer leaves. Including them would make the model look perfect  but fail completely in production. Removing them is what makes the 0.987 AUC *meaningful*.
 
 **2. ⚖️ ROSE Inside CV Folds — not before**
 
-Applying oversampling before splitting is a common error that causes synthetic samples to leak into validation sets. Here, ROSE runs *inside* each fold — keeping train and validation data fully independent.
+Applying oversampling before splitting is a common error that causes synthetic samples to leak into validation sets. Here, ROSE runs *inside* each fold  keeping train and validation data fully independent.
 
 **3. 🔁 Repeated Cross-Validation (10-fold × 3 repeats)**
 
@@ -137,7 +137,7 @@ Generates 30 unique train/validation pairs for stable, reliable performance esti
 
 **4. 🌲 Why Random Forest?**
 
-Handles mixed data types natively, captures nonlinear interactions (e.g., tenure × contract type), and produces interpretable feature importance scores — critical for explaining churn drivers to non-technical stakeholders.
+Handles mixed data types natively, captures nonlinear interactions (e.g., tenure × contract type), and produces interpretable feature importance scores  critical for explaining churn drivers to non-technical stakeholders.
 
 ---
 
@@ -147,21 +147,21 @@ Customers most likely to churn share a consistent profile:
 
 | Signal | Insight |
 |:---|:---|
-| 😞 **Low satisfaction score** | Strongest predictor — disengagement precedes cancellation |
+| 😞 **Low satisfaction score** | Strongest predictor, disengagement precedes cancellation |
 | 🤐 **Zero referrals** | No social investment = lower switching cost |
 | 📅 **Month-to-month contract** | No lock-in = highest churn rate of any segment |
 | 🔓 **No Online Security add-on** | Less embedded in the service ecosystem |
 | 🆕 **Tenure < 12 months** | Haven't reached the loyalty threshold yet |
 | 💸 **High monthly charges** | Cost sensitivity without perceived value |
 
-> **One actionable takeaway:** Converting month-to-month customers to annual contracts is the single highest-leverage retention strategy — it reduces churn risk structurally, without needing to individually outreach every at-risk customer.
+> **One actionable takeaway:** Converting month-to-month customers to annual contracts is the single highest-leverage retention strategy and it reduces churn risk structurally, without needing to individually outreach every at-risk customer.
 
 ---
 
 ## 📈 Visualisations
 
 ### 📉 ROC Curve — AUC = 0.987
-*The curve hugs the top-left corner — near-perfect discrimination between churners and retained customers across all decision thresholds.*
+*The curve hugs the top-left corner  near-perfect discrimination between churners and retained customers across all decision thresholds.*
 
 ![ROC Curve](https://raw.githubusercontent.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/main/01_roc_curve.png)
 
@@ -175,21 +175,21 @@ Customers most likely to churn share a consistent profile:
 ---
 
 ### 🏆 Feature Importance — Top Churn Drivers
-*Satisfaction score and referrals dominate — contract type and tenure follow closely.*
+*Satisfaction score and referrals dominate  contract type and tenure follow closely.*
 
 ![Feature Importance](https://raw.githubusercontent.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/main/03_feature_importance.png)
 
 ---
 
 ### 🗂️ Customer Risk Distribution
-*~29% of the base is high-risk — a focused, actionable retention target.*
+*~29% of the base is high-risk  a focused, actionable retention target.*
 
 ![Risk Segmentation](https://raw.githubusercontent.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/main/04_risk_level_distribution.png)
 
 ---
 
 ### 📊 Predicted Probability Distribution
-*Strongly bimodal — the model commits to clear predictions with minimal ambiguity in the middle.*
+*Strongly bimodal the model commits to clear predictions with minimal ambiguity in the middle.*
 
 ![Probability Distribution](https://raw.githubusercontent.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/main/05_probability_band_distribution.png)
 
@@ -248,7 +248,7 @@ Log outcomes → retrain model quarterly
 
 ## 🖥️ Interactive App Concept
 
-> **The next step: turn this into a tool anyone can use — no code required.**
+> **The next step: turn this into a tool anyone can use  no code required.**
 
 A **Shiny dashboard** would give retention managers a live interface to:
 
@@ -330,8 +330,8 @@ source("telco_churn_pipeline.R")
 
 ---
 
-*Not just a model — a complete, production-minded pipeline that turns raw customer data into retention decisions.*
+*Not just a model a complete, production-minded pipeline that turns raw customer data into retention decisions.*
 
-*Built with 💜 by **Katlego Mathebula***
+*Built with 🤍 by **Katlego Mathebula***
 
 </div>
