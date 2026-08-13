@@ -15,15 +15,15 @@
 
 ---
 
-## 🚀 TL;DR
+##  Summary 
 
-> A production-ready Random Forest pipeline that predicts which telecom customers are about to churn **before they do**  with **96.8% recall** and **AUC = 0.987**.
+> A production ready Random Forest pipeline that predicts which telecom customers are about to churn **before they do**  with **96.8% recall** and **AUC = 0.987**.
 >
 > Out of 7,000 customers, the model correctly flags **361 of 373 churners** and segments the entire base into actionable risk tiers, so retention teams know exactly who to call, and when.
 
 ---
 
-## 💼 The Business Problem
+## The Business Problem
 
 Telecom companies lose billions every year to churn. The painful part? **Most of it is preventable.**
 
@@ -31,23 +31,23 @@ The problem isn't that companies don't care, it's that by the time a customer ca
 
 This project gives a telecom company a **proactive early-warning system**:
 
-- 🔍 **Identify** at-risk customers weeks before they leave
-- 🎯 **Understand** *why* they're at risk (contract type, satisfaction, pricing)
-- 💰 **Allocate** retention budget where it actually makes a difference
+-  **Identify** at-risk customers weeks before they leave
+-  **Understand** *why* they're at risk (contract type, satisfaction, pricing)
+-  **Allocate** retention budget where it actually makes a difference
 
 ---
 
-## 📊 Key Results
+##  Key Results
 
 <div align="center">
 
 | Metric | Result | What It Means |
 |:---|:---:|:---|
-| 🎯 **AUC (ROC)** | **0.987** | Ranks a churner above a retained customer 98.7% of the time |
-| 🔔 **Recall** | **96.8%** | Catches 361 of 373 actual churners only 12 slipped through |
-| ✅ **Accuracy** | **~93%** | ~6,700 correct predictions out of 7,000 |
-| 🌲 **Model** | Random Forest | 500 trees · 10-fold CV × 3 repeats |
-| 📦 **Dataset** | ~7,000 records | 20+ features · 26% churn rate |
+|  **AUC (ROC)** | **0.987** | Ranks a churner above a retained customer 98.7% of the time |
+|  **Recall** | **96.8%** | Catches 361 of 373 actual churners only 12 slipped through |
+|  **Accuracy** | **~93%** | ~6,700 correct predictions out of 7,000 |
+|  **Model** | Random Forest | 500 trees · 10-fold CV × 3 repeats |
+|  **Dataset** | ~7,000 records | 20+ features · 26% churn rate |
 
 </div>
 
@@ -56,17 +56,17 @@ This project gives a telecom company a **proactive early-warning system**:
 
 ---
 
-## 🎯 Business Impact
+##  Business Impact
 
 <table>
 <tr>
 <td width="50%">
 
 **Who uses this?**
-- 📞 Retention & CRM teams
-- 📈 Marketing (targeted campaigns)
-- 💼 Customer Success managers
-- 🏦 Finance (revenue forecasting)
+-  Retention & CRM teams
+- Marketing (targeted campaigns)
+-  Customer Success managers
+- Finance (revenue forecasting)
 
 </td>
 <td width="50%">
@@ -81,7 +81,7 @@ This project gives a telecom company a **proactive early-warning system**:
 </tr>
 </table>
 
-### 🗂️ Customer Risk Segments
+###  Customer Risk Segments
 
 | Segment | Customers | Recommended Action |
 |:---|:---:|:---|
@@ -93,13 +93,13 @@ This project gives a telecom company a **proactive early-warning system**:
 
 ---
 
-## ⚙️ Solution Overview
+##  Solution Overview
 
 ```
 Raw Customer Data (telco.csv)
          │
          ▼
-  🧹 Clean & Prep         →  Standardise, impute missing values
+   Clean & Prep         →  Standardise, impute missing values
          │
          ▼
   🚫 Remove Leakage        →  Drop post-churn variables (Churn.Score, etc.)
@@ -111,91 +111,91 @@ Raw Customer Data (telco.csv)
   ⚖️  Handle Imbalance     →  ROSE applied inside each CV fold
          │
          ▼
-  🌲 Train Random Forest   →  500 trees · optimised by AUC
+   Train Random Forest   →  500 trees · optimised by AUC
          │
          ▼
-  📊 Evaluate & Segment    →  ROC · Confusion Matrix · Risk Tiers
+   Evaluate & Segment    →  ROC · Confusion Matrix · Risk Tiers
 ```
 
 **Tech stack:** `R` · `caret` · `randomForest` · `ROSE` · `pROC` · `tidyverse`
 
 ---
 
-## 🧠 Key Technical Decisions
+## Key Technical Decisions
 
-**1. 🚫 Leakage Prevention — the most important step**
+**1.  Leakage Prevention — the most important step**
 
 Variables like `Churn.Score` and `Churn.Reason` are only known *after* a customer leaves. Including them would make the model look perfect  but fail completely in production. Removing them is what makes the 0.987 AUC *meaningful*.
 
-**2. ⚖️ ROSE Inside CV Folds — not before**
+**2.  ROSE Inside CV Folds — not before**
 
 Applying oversampling before splitting is a common error that causes synthetic samples to leak into validation sets. Here, ROSE runs *inside* each fold  keeping train and validation data fully independent.
 
-**3. 🔁 Repeated Cross-Validation (10-fold × 3 repeats)**
+**3.  Repeated Cross-Validation (10-fold × 3 repeats)**
 
 Generates 30 unique train/validation pairs for stable, reliable performance estimates. ROC-AUC was used as the primary metric — more appropriate than accuracy for imbalanced classes.
 
-**4. 🌲 Why Random Forest?**
+**4.  Why Random Forest?**
 
 Handles mixed data types natively, captures nonlinear interactions (e.g., tenure × contract type), and produces interpretable feature importance scores  critical for explaining churn drivers to non-technical stakeholders.
 
 ---
 
-## 🔍 Key Insights
+##  Key Insights
 
 Customers most likely to churn share a consistent profile:
 
 | Signal | Insight |
 |:---|:---|
-| 😞 **Low satisfaction score** | Strongest predictor, disengagement precedes cancellation |
-| 🤐 **Zero referrals** | No social investment = lower switching cost |
-| 📅 **Month-to-month contract** | No lock-in = highest churn rate of any segment |
-| 🔓 **No Online Security add-on** | Less embedded in the service ecosystem |
-| 🆕 **Tenure < 12 months** | Haven't reached the loyalty threshold yet |
-| 💸 **High monthly charges** | Cost sensitivity without perceived value |
+| **Low satisfaction score** | Strongest predictor, disengagement precedes cancellation |
+| **Zero referrals** | No social investment = lower switching cost |
+|  **Month-to-month contract** | No lock-in = highest churn rate of any segment |
+|  **No Online Security add-on** | Less embedded in the service ecosystem |
+| **Tenure < 12 months** | Haven't reached the loyalty threshold yet |
+|  **High monthly charges** | Cost sensitivity without perceived value |
 
 > **One actionable takeaway:** Converting month-to-month customers to annual contracts is the single highest-leverage retention strategy and it reduces churn risk structurally, without needing to individually outreach every at-risk customer.
 
 ---
 
-## 📈 Visualisations
+## Visualisations
 
-### 📉 ROC Curve — AUC = 0.987
+###  ROC Curve — AUC = 0.987
 *The curve hugs the top-left corner  near-perfect discrimination between churners and retained customers across all decision thresholds.*
 
 ![ROC Curve](https://raw.githubusercontent.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/main/01_roc_curve.png)
 
 ---
 
-### 🟦 Confusion Matrix
+###  Confusion Matrix
 *361 churners correctly caught · only 12 missed · overall accuracy ~93%*
 
 ![Confusion Matrix](https://raw.githubusercontent.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/main/02_confusion_matrix.png)
 
 ---
 
-### 🏆 Feature Importance — Top Churn Drivers
+###  Feature Importance — Top Churn Drivers
 *Satisfaction score and referrals dominate  contract type and tenure follow closely.*
 
 ![Feature Importance](https://raw.githubusercontent.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/main/03_feature_importance.png)
 
 ---
 
-### 🗂️ Customer Risk Distribution
+### Customer Risk Distribution
 *~29% of the base is high-risk  a focused, actionable retention target.*
 
 ![Risk Segmentation](https://raw.githubusercontent.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/main/04_risk_level_distribution.png)
 
 ---
 
-### 📊 Predicted Probability Distribution
+###  Predicted Probability Distribution
 *Strongly bimodal the model commits to clear predictions with minimal ambiguity in the middle.*
 
 ![Probability Distribution](https://raw.githubusercontent.com/Katlego-DataLab/TELCO-CHURN-PREDICTION-FULL-ML-PIPELINE/main/05_probability_band_distribution.png)
 
 ---
 
-## 🏗️ Production Thinking
+## Production Thinking
 
 Here's how this pipeline would run inside a real company:
 
@@ -234,28 +234,28 @@ Log outcomes → retrain model quarterly
 
 ---
 
-## 💡 Future Improvements
+##  Future Improvements
 
 | Improvement | Why It Matters |
 |:---|:---|
-| 🖥️ **Shiny / Streamlit app** | Make risk scores accessible to non-technical teams |
-| 🔄 **XGBoost / LightGBM comparison** | Potentially higher performance; faster inference |
-| 💬 **SHAP explanations** | Per-customer "why is this person high risk?" narrative |
-| 📡 **Real-time scoring API** | Score customers on demand vs. weekly batch |
-| 📊 **Power BI / Tableau integration** | Executive-level churn dashboards |
+|  **Shiny / Streamlit app** | Make risk scores accessible to non-technical teams |
+|  **XGBoost / LightGBM comparison** | Potentially higher performance; faster inference |
+|  **SHAP explanations** | Per-customer "why is this person high risk?" narrative |
+|  **Real-time scoring API** | Score customers on demand vs. weekly batch |
+|  **Power BI / Tableau integration** | Executive-level churn dashboards |
 
 ---
 
-## 🖥️ Interactive App Concept
+##  Interactive App Concept
 
 > **The next step: turn this into a tool anyone can use  no code required.**
 
 A **Shiny dashboard** would give retention managers a live interface to:
 
-- 🔎 **Look up any customer** → see their churn probability + risk tier instantly
-- 🎛️ **Run what-if scenarios** → *"What if we move this customer to an annual contract?"* → watch the risk score update in real time
-- 📋 **Browse the retention queue** → filterable table of high-risk customers, sorted by churn probability
-- 📊 **Explore churn drivers** → visual breakdown of *why* specific customers are flagged
+- **Look up any customer** → see their churn probability + risk tier instantly
+-  **Run what-if scenarios** → *"What if we move this customer to an annual contract?"* → watch the risk score update in real time
+- **Browse the retention queue** → filterable table of high-risk customers, sorted by churn probability
+- **Explore churn drivers** → visual breakdown of *why* specific customers are flagged
 
 ```r
 # Shiny app skeleton
@@ -283,7 +283,7 @@ ui <- fluidPage(
 
 ---
 
-## ▶️ How to Run
+##  How to Run
 
 ```r
 # 1. Install dependencies
@@ -310,14 +310,14 @@ source("telco_churn_pipeline.R")
 ## 📁 Project Structure
 
 ```
-📦 telco-churn-prediction
- ┣ 📜 telco_churn_pipeline.R          ← Full pipeline (single script)
- ┣ 📊 01_roc_curve.png
- ┣ 📊 02_confusion_matrix.png
- ┣ 📊 03_feature_importance.png
- ┣ 📊 04_risk_level_distribution.png
- ┣ 📊 05_probability_band_distribution.png
- ┗ 📝 README.md
+ telco-churn-prediction
+ ┣  telco_churn_pipeline.R          ← Full pipeline (single script)
+ ┣  01_roc_curve.png
+ ┣  02_confusion_matrix.png
+ ┣  03_feature_importance.png
+ ┣  04_risk_level_distribution.png
+ ┣  05_probability_band_distribution.png
+ ┗  README.md
 ```
 
 ---
